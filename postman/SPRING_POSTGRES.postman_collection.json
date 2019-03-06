@@ -1,0 +1,157 @@
+{
+	"info": {
+		"_postman_id": "b609e9b5-c340-48da-b0e9-f6a71d6bf89a",
+		"name": "SPRING_POSTGRES",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Post a question",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "347940af-ad75-44de-a825-76206ba15b08",
+						"exec": [
+							"",
+							"tests[\"200 OK\"] = responseCode.code === 200;",
+							"",
+							"if ( tests[\"200 OK\"] ) {",
+							"    var data = pm.response.json();",
+							"    pm.globals.set(\"question-id\", data.id);",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\":\"How to use Spring Data JPA with PostgreSQL\",\n\t\"description\":\"I want to write a simple service persisting data on PostgreSQL\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/questions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"questions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get paginated questions",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/questions?page=0&size=2&sort=createdAt,desc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"questions"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "2"
+						},
+						{
+							"key": "sort",
+							"value": "createdAt,desc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Answer to question",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"text\":\"It's very easy to configure Spring Data JPA to use PostgreSQL!! Just follow this quick tutorial https://www.callicoder.com/spring-boot-jpa-hibernate-postgresql-restful-crud-api-example/\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/questions/{{question-id}}/answers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"questions",
+						"{{question-id}}",
+						"answers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get answers for question",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/questions/{{question-id}}/answers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"questions",
+						"{{question-id}}",
+						"answers"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
