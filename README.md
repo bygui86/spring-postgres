@@ -12,8 +12,8 @@
 Start application
 ```
 cd <PROJECT_ROOT_FOLDER>/<SUB_PROJECT_FOLDER>
-docker run -d --name postgres --restart always -e POSTGRES_DB=spring-postgres -e POSTGRES_USER=user -e POSTGRES_PASSWORD=secret -p 5432:5432 postgres:alpine
-mvnw clean package spring-boot:run
+docker run -d --name postgres -e POSTGRES_DB=spring-postgres -e POSTGRES_USER=user -e POSTGRES_PASSWORD=secret -p 5432:5432 postgres:alpine
+mvnw clean spring-boot:run
 ```
 
 ---
@@ -22,7 +22,6 @@ mvnw clean package spring-boot:run
 
 * https://www.callicoder.com/spring-boot-jpa-hibernate-postgresql-restful-crud-api-example/
 * https://www.baeldung.com/the-persistence-layer-with-spring-and-jpa - `TODO`
-* https://www.baeldung.com/the-persistence-layer-with-spring-data-jpa - `TODO`
 
 ### issues
 
